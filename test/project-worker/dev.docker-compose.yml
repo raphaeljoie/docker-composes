@@ -1,0 +1,26 @@
+version: '3'
+services:
+  worker:
+    build: ./worker
+    environment:
+      QUEUE_PORT: 5672
+      QUEUE_HOST: rabbitmq
+      QUEUE_USERNAME: username
+      QUEUE_PASSWORD: password
+
+  rabbitmq:
+    image: rabbitmq:3.8.3-alpine
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+
+  rabbitmq-management:
+    image: rabbitmq:3.8.3-management
+    ports:
+      - 8080:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: username
+      RABBITMQ_DEFAULT_PASS: password

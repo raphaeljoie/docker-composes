@@ -37,3 +37,17 @@ the queues, and a nice GUI found on Docker hub.
 
 **The solution**: instead of playing with fancy networking configuration, I decided to create a script to combine both 
 `docker-compose.yml` files together
+
+## Example usage
+```
+python docker-composes.py \
+    test/project-store \
+    ./test/project-worker/dev.docker-compose.yml
+docker-compose -f docker-composes.yml up
+```
+
+## TODO
+- [] handle volume object in services configuration
+- [] handle port object in services configuration
+- [] merge networks configuration
+- [] merge volumes configuration
